@@ -8,6 +8,6 @@ package br.com.kpc.locbus.Dao;
  *
  * @author César
  */
-public class EmpresaDao{
+public class EnderecoDao {
     
 }

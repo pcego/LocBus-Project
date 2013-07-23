@@ -17,16 +17,32 @@ import javax.persistence.Table;
  * @author César
  */
 @Entity
-@Table(name = "veiculos")
-public class Veiculo implements Serializable {
+@Table(name = "enderecos")
+public class Endereco implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "codigo", nullable = false)
+    @Column(name = "codigo",nullable = false)
     private Long id;
     
+    @Column(length = 9)
+    private String cep;
+    
+    @Column(length = 200,nullable = false)
+    private String rua;
+    
+    @Column(length = 200, nullable = false)
+    private String bairro;
+    
+    @Column
+    private int numero;
+    
+    public Endereco(){
+        
+    }
+
     public Long getId() {
         return id;
     }
@@ -45,10 +61,10 @@ public class Veiculo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Veiculo)) {
+        if (!(object instanceof Endereco)) {
             return false;
         }
-        Veiculo other = (Veiculo) object;
+        Endereco other = (Endereco) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -57,7 +73,7 @@ public class Veiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.kpc.locbus.core.Veiculo[ id=" + id + " ]";
+        return "br.com.kpc.locbus.core.Endereco[ id=" + id + " ]";
     }
     
 }
