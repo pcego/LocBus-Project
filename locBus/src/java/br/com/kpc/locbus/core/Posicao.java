@@ -5,11 +5,15 @@
 package br.com.kpc.locbus.core;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +28,7 @@ public class Posicao implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "codigo")
+    @Column(name = "codigo_posicao", nullable = false)
     private Long id;
     
     @Column(nullable = false)
@@ -32,14 +36,42 @@ public class Posicao implements Serializable {
     
     @Column(nullable = false)
     private double longitude;
-        
-    @Column(name = "codVeiculo", nullable = false)
+    
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "veiculo_id", referencedColumnName = "codigo_veiculo",
+            nullable = false)
     private Veiculo veiculo;
     
     public Posicao(){
         
     }
 
+    
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+        
     public Long getId() {
         return id;
     }
