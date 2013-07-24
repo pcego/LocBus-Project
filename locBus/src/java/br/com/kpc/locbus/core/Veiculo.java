@@ -5,11 +5,17 @@
 package br.com.kpc.locbus.core;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,6 +33,72 @@ public class Veiculo implements Serializable {
     @Column(name = "codigo", nullable = false)
     private Long id;
     
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "linha_id", referencedColumnName = "codigo_linha",
+            nullable = false)
+    private Linha linha;
+    
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "empresa_id", referencedColumnName = "codigo_empresa",
+            nullable = false)
+    private Empresa empresa;
+    
+    @OneToMany(mappedBy = "veiculo")
+    private List<Posicao> posicao;
+    
+    @Column(nullable = false, length = 200)
+    private String descricao;
+    
+    @Column(nullable = false)
+    private boolean status;
+    
+    public Veiculo(){
+        
+    }
+    
+    public Linha getLinha() {
+        return linha;
+    }
+
+    public void setLinha(Linha linha) {
+        this.linha = linha;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public List<Posicao> getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(List<Posicao> posicao) {
+        this.posicao = posicao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+        
     public Long getId() {
         return id;
     }

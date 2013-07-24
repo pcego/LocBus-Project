@@ -5,11 +5,13 @@
 package br.com.kpc.locbus.core;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,16 +26,35 @@ public class Empresa implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "codigo",nullable = false)
+    @Column(name = "codigo_empresa",nullable = false)
     private Long id;
     
     @Column(length = 100, nullable = false)
     private String nome;   
     
+    @OneToMany(mappedBy = "empresa")
+    private List<Veiculo> veiculo;
+    
     public Empresa(){
         
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Veiculo> getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(List<Veiculo> veiculo) {
+        this.veiculo = veiculo;
+    }
+   
     public Long getId() {
         return id;
     }
