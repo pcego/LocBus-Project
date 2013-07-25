@@ -30,8 +30,11 @@ public class Veiculo implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "codigo", nullable = false)
+    @Column(name = "codigo_veiculo", nullable = false)
     private Long id;
+    
+    @Column(nullable = false, length = 100, unique = true)
+    private String imei;
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             optional = false, fetch = FetchType.EAGER)

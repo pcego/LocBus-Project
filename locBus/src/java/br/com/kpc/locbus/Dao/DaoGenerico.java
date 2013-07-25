@@ -30,7 +30,7 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
 
     @Override
     public boolean salvar(Object obj) {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
         try {
             getManager().persist(obj);
             getManager().flush();
@@ -43,7 +43,7 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
 
     @Override
     public boolean apagar(Object obj) {
-        //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
         try {
             getManager().remove(getManager().getReference(type, obj));
             return true;
@@ -55,7 +55,7 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
 
     @Override
     public boolean atualizar(Object obj) {
-        //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
         try {
             getManager().refresh(obj);
             getManager().flush();
