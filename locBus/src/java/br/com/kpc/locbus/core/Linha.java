@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -38,38 +37,37 @@ public class Linha implements Serializable {
     @Column(nullable = false)
     private int numeroLinha;
     
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String tipoLinha;
     
-    @Column
+    @Column(length = 150)
     private String pontoInicial;
     
-    @Column
+    @Column(length = 150)
     private String pontoFinal;
     
-    @Column
+    @Column(length = 150)
     private String horaInicial;
     
-    @Column
+    @Column(length = 150)
     private String horaFinal;
     
     @Column(nullable = false)
     private boolean status;
-
+    
     @OneToMany(mappedBy = "linha")
     private List<Veiculo> veiculo;
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER)
     @JoinTable(name = "paradas_linhas", joinColumns = {
-        @JoinColumn(name = "parada_id", referencedColumnName = "codigo_parada'")},
-            inverseJoinColumns = {@JoinColumn(name = "linha_id",
-            referencedColumnName = "codigo_linha")})
+        @JoinColumn(name = "linha_id")},inverseJoinColumns = {
+        @JoinColumn(name = "parada_id")})
     private List<Parada> parada;
 
     public Linha() {
         
-    }   
+    }
 
     public int getNumeroLinha() {
         return numeroLinha;

@@ -5,13 +5,15 @@
 package br.com.kpc.locbus.core;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +21,6 @@ import javax.persistence.Table;
  * @author César
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "enderecos")
 public class Endereco implements Serializable {
     
@@ -27,7 +28,7 @@ public class Endereco implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "codigo_end",nullable = false)
+    @Column(name = "codigo_endereco",nullable = false)
     private Long id;
     
     @Column(length = 9)
@@ -38,6 +39,10 @@ public class Endereco implements Serializable {
     
     @Column(length = 200, nullable = false)
     private String bairro;
+    
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "parada_id", nullable = false, referencedColumnName = "codigo_parada")
+    private Parada parada;
     
     @Column
     private int numero;
