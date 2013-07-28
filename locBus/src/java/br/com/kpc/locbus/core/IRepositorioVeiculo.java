@@ -16,7 +16,7 @@ public interface IRepositorioVeiculo extends IRepositorio<Veiculo> {
 
     List<Veiculo> listaPorEmpresa(Empresa empresa);
 
-    List<Veiculo> listaVeiculoPorImei(String imei);
+    Veiculo listaVeiculoPorImei(String imei);
 
     List<Veiculo> listaVeiculosPorLinha(Linha linha);
 }

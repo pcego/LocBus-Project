@@ -4,10 +4,22 @@
  */
 package br.com.kpc.locbus.Dao;
 
+import br.com.kpc.locbus.core.Endereco;
+import br.com.kpc.locbus.core.IRepositorioEndereco;
+
 /**
  *
  * @author César
  */
-public class EnderecoDao {
+public class EnderecoDao extends DaoGenerico<Endereco> implements IRepositorioEndereco{
+    
+    public EnderecoDao(){
+        super(Endereco.class);
+    }
+
+    @Override
+    protected Long getCodigo(Endereco obj) {
+        return obj.getId();
+    }
     
 }
