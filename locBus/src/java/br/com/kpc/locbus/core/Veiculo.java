@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,12 +25,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "veiculos")
+@XmlRootElement
 public class Veiculo implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_veiculo", nullable = false)
     private Long id;
     
@@ -48,7 +50,7 @@ public class Veiculo implements Serializable {
             nullable = false)
     private Empresa empresa;
     
-    @OneToMany(mappedBy = "veiculo")
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.EAGER)
     private List<Posicao> posicao;
     
     @Column(nullable = false, length = 200)

@@ -18,6 +18,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -25,12 +28,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "linhas")
+@XmlRootElement
 public class Linha implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_linha", nullable = false)
     private Long id;
     
@@ -55,18 +59,17 @@ public class Linha implements Serializable {
     @Column(nullable = false)
     private boolean status;
     
-    @OneToMany(mappedBy = "linha")
+    @OneToMany(mappedBy = "linha", fetch = FetchType.EAGER)
     private List<Veiculo> veiculo;
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER)
     @JoinTable(name = "paradas_linhas", joinColumns = {
-        @JoinColumn(name = "linha_id")},inverseJoinColumns = {
+        @JoinColumn(name = "linha_id")}, inverseJoinColumns = {
         @JoinColumn(name = "parada_id")})
     private List<Parada> parada;
 
     public Linha() {
-        
     }
 
     public int getNumeroLinha() {
@@ -125,6 +128,8 @@ public class Linha implements Serializable {
         this.status = status;
     }
 
+    @XmlTransient
+    @JsonIgnore
     public List<Veiculo> getVeiculo() {
         return veiculo;
     }

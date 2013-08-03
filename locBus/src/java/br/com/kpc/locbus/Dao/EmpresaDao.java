@@ -7,15 +7,17 @@ package br.com.kpc.locbus.Dao;
 import br.com.kpc.locbus.core.Empresa;
 import br.com.kpc.locbus.core.IRepositorioEmpresa;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 /**
  *
  * @author César
  */
-public class EmpresaDao extends DaoGenerico<Empresa> implements IRepositorioEmpresa{
-    
-    public EmpresaDao(){
+@Stateless
+public class EmpresaDao extends DaoGenerico<Empresa> implements IRepositorioEmpresa {
+
+    public EmpresaDao() {
         super(Empresa.class);
     }
 
@@ -23,13 +25,12 @@ public class EmpresaDao extends DaoGenerico<Empresa> implements IRepositorioEmpr
     protected Long getCodigo(Empresa obj) {
         return obj.getId();
     }
-    
+
     @Override
     public List<Empresa> listaTodas() {
-        
-        Query consulta = getManager().createQuery("select from Empresa order by Empresa.nome");
+
+        Query consulta = getManager().createQuery("select e from Empresa e order by e.nome");
         return consulta.getResultList();
-        
+
     }
-    
 }

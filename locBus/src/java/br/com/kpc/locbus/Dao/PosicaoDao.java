@@ -8,12 +8,14 @@ import br.com.kpc.locbus.core.IRepositorioPosicao;
 import br.com.kpc.locbus.core.Posicao;
 import br.com.kpc.locbus.core.Veiculo;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 /**
  *
  * @author César
  */
+@Stateless
 public class PosicaoDao extends DaoGenerico<Posicao> implements IRepositorioPosicao {
 
     public PosicaoDao() {

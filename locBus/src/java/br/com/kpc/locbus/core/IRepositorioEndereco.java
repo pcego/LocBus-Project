@@ -4,12 +4,12 @@
  */
 package br.com.kpc.locbus.core;
 
+import javax.ejb.Remote;
+
 /**
  *
  * @author César
  */
-public interface IRepositorioEndereco extends IRepositorio<Endereco>{
-    
-    
-    
+@Remote
+public interface IRepositorioEndereco extends IRepositorio<Endereco> {
 }

@@ -8,11 +8,13 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -20,11 +22,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "paradas")
+@XmlRootElement
 public class Parada implements Serializable {
 
     private static final long serialVersionUID = 1L;
+   
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_parada", nullable = false)
     private Long id;
     
@@ -34,13 +38,13 @@ public class Parada implements Serializable {
     @Column(nullable = false)
     private double longitude;
     
-    @Column(length = 200)    
+    @Column(length = 200)
     private String descricao;
     
     @Column(nullable = false)
     private boolean status;
     
-    @ManyToMany(mappedBy = "parada")
+    @ManyToMany(mappedBy = "parada", fetch = FetchType.EAGER)
     private List<Linha> linha;
 
     public Parada() {
@@ -85,8 +89,7 @@ public class Parada implements Serializable {
     public void setLinha(List<Linha> linha) {
         this.linha = linha;
     }
-    
-    
+
     public Long getId() {
         return id;
     }

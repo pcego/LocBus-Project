@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,22 +23,23 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "enderecos")
+@XmlRootElement
 public class Endereco implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+   
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "codigo_endereco",nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo_endereco", nullable = false)    
     private Long id;
     
-    @Column(length = 9)
+    @Column(length = 9)    
     private String cep;
     
-    @Column(length = 200,nullable = false)
+    @Column(length = 200, nullable = false)    
     private String rua;
     
-    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = false)    
     private String bairro;
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -46,9 +48,8 @@ public class Endereco implements Serializable {
     
     @Column
     private int numero;
-    
-    public Endereco(){
-        
+
+    public Endereco() {
     }
 
     public Long getId() {
@@ -83,5 +84,4 @@ public class Endereco implements Serializable {
     public String toString() {
         return "br.com.kpc.locbus.core.Endereco[ id=" + id + " ]";
     }
-    
 }

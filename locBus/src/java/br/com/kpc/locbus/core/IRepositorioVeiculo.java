@@ -5,11 +5,13 @@
 package br.com.kpc.locbus.core;
 
 import java.util.List;
+import javax.ejb.Remote;
 
 /**
  *
  * @author César
  */
+@Remote
 public interface IRepositorioVeiculo extends IRepositorio<Veiculo> {
 
     List<Veiculo> listaTodos();

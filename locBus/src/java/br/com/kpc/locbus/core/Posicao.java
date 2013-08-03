@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,12 +23,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "posicoes")
+@XmlRootElement
 public class Posicao implements Serializable {
    
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_posicao", nullable = false)
     private Long id;
     

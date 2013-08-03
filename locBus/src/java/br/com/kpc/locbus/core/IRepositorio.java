@@ -8,10 +8,11 @@ package br.com.kpc.locbus.core;
  *
  * @author César
  */
-public interface IRepositorio<T>{
-    
+public interface IRepositorio<T> {
+
     public boolean salvar(T obj);
+
     public boolean apagar(T obj);
+
     public boolean atualizar(T obj);
-    
 }

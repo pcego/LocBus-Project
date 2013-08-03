@@ -30,7 +30,7 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
 
     @Override
     public boolean salvar(Object obj) {
-        
+
         try {
             getManager().persist(obj);
             getManager().flush();
@@ -43,7 +43,7 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
 
     @Override
     public boolean apagar(Object obj) {
-        
+
         try {
             getManager().remove(getManager().getReference(type, obj));
             return true;
@@ -55,7 +55,7 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
 
     @Override
     public boolean atualizar(Object obj) {
-        
+
         try {
             getManager().refresh(obj);
             getManager().flush();
@@ -65,6 +65,4 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
             return false;
         }
     }
-    
-    
 }

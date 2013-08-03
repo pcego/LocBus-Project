@@ -6,14 +6,16 @@ package br.com.kpc.locbus.Dao;
 
 import br.com.kpc.locbus.core.Endereco;
 import br.com.kpc.locbus.core.IRepositorioEndereco;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author César
  */
-public class EnderecoDao extends DaoGenerico<Endereco> implements IRepositorioEndereco{
-    
-    public EnderecoDao(){
+@Stateless
+public class EnderecoDao extends DaoGenerico<Endereco> implements IRepositorioEndereco {
+
+    public EnderecoDao() {
         super(Endereco.class);
     }
 
@@ -21,5 +23,4 @@ public class EnderecoDao extends DaoGenerico<Endereco> implements IRepositorioEn
     protected Long getCodigo(Endereco obj) {
         return obj.getId();
     }
-    
 }
