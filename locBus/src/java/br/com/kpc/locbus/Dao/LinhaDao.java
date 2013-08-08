@@ -39,14 +39,16 @@ public class LinhaDao extends DaoGenerico<Linha> implements IRepositorioLinha {
     @Override
     public List<Linha> listaPorParada(Parada parada) {
 
-        Query consulta = getManager().createQuery("");
+        Query consulta = getManager().createQuery("select l from Linha l where l.parada=:parada");
+        consulta.setParameter("parada", parada);
         return consulta.getResultList();
     }
 
     @Override
     public List<Linha> listaLinhasPorEmpresa(Empresa empresa) {
 
-        Query consulta = getManager().createQuery("");
+        Query consulta = getManager().createQuery("select l from Linha l JOIN l.veiculo.empresa =:empresa");
+        consulta.setParameter("empresa", empresa);
         return consulta.getResultList();
     }
 }
