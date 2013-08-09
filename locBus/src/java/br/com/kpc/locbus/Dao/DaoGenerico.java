@@ -29,6 +29,12 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
     protected abstract Long getCodigo(T obj);
 
     @Override
+    public T abrir(Long codigo) throws Exception {
+
+        return (T) getManager().find(type, codigo);
+    }
+
+    @Override
     public boolean salvar(Object obj) {
 
         try {

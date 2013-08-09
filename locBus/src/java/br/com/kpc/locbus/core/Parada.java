@@ -50,6 +50,10 @@ public class Parada implements Serializable {
     @ManyToMany(mappedBy = "parada", fetch = FetchType.EAGER)
     private List<Linha> linha;
     
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "endereco_id", nullable = false, referencedColumnName = "codigo_endereco")
+    private Endereco endereco;
+    
     public Parada() {
     }
 
@@ -100,7 +104,16 @@ public class Parada implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-   
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+    
+       
     @Override
     public int hashCode() {
         int hash = 0;

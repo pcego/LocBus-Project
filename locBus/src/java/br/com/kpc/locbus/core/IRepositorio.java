@@ -10,6 +10,8 @@ package br.com.kpc.locbus.core;
  */
 public interface IRepositorio<T> {
 
+    public T abrir(Long obj) throws Exception;
+
     public boolean salvar(T obj);
 
     public boolean apagar(T obj);

@@ -5,15 +5,11 @@
 package br.com.kpc.locbus.core;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -41,11 +37,7 @@ public class Endereco implements Serializable {
     
     @Column(length = 200, nullable = false)    
     private String bairro;
-    
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "parada_id", nullable = false, referencedColumnName = "codigo_parada")
-    private Parada parada;
-    
+            
     @Column
     private int numero;
 
@@ -83,15 +75,7 @@ public class Endereco implements Serializable {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-
-    public Parada getParada() {
-        return parada;
-    }
-
-    public void setParada(Parada parada) {
-        this.parada = parada;
-    }
-
+   
     public int getNumero() {
         return numero;
     }

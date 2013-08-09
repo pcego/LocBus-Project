@@ -16,6 +16,8 @@ import br.com.kpc.locbus.core.Linha;
 import br.com.kpc.locbus.core.Parada;
 import br.com.kpc.locbus.core.Posicao;
 import br.com.kpc.locbus.core.Veiculo;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -26,18 +28,12 @@ import javax.naming.NamingException;
  */
 public class TestePersistencia {
 
-    public static void main(String[] args) throws NamingException {
+    public static void main(String[] args) throws NamingException, Exception {
 
         //Declarando Context Geral
         Context ctx = (Context) new InitialContext();
-
-        //--------------Parada
-        IRepositorioParada repoParada = (IRepositorioParada) ctx.lookup("java:global/locBus/ParadaDao");
-        Parada parada = new Parada();
-        parada.setLongitude(-43.12345);
-        parada.setLatitude(-16.98675);
-        parada.setDescricao("PARADA DE TESTE");
-
+        List veiculos = new ArrayList<Veiculo>();
+        List Posicao = new ArrayList<Posicao>();
 
         // --------------Endereço
         IRepositorioEndereco repoEnd = (IRepositorioEndereco) ctx.lookup("java:global/locBus/EnderecoDao");
@@ -46,9 +42,23 @@ public class TestePersistencia {
         end.setRua("RUA SANTA MARIA");
         end.setBairro("TODOS OS SANTOS");
         end.setNumero(299);
-        end.setParada(parada);
 
-        repoEnd.salvar(end);
+        //--------------Parada
+        IRepositorioParada repoParada = (IRepositorioParada) ctx.lookup("java:global/locBus/ParadaDao");
+        Parada parada = new Parada();
+        parada.setLongitude(-43.12345);
+        parada.setLatitude(-16.98675);
+        parada.setDescricao("PARADA DE TESTE");
+        parada.setEndereco(end);
+
+
+        //--------------Veiculo
+        IRepositorioVeiculo repoVeiculo = (IRepositorioVeiculo) ctx.lookup("java:global/locBus/VeiculoDao");
+        Veiculo v = new Veiculo();
+        v.setImei("123456789123");
+        v.setDescricao("DESCRIÇÃO TESTE");
+
+
 
         //--------------Linha
         IRepositorioLinha repoLinha = (IRepositorioLinha) ctx.lookup("java:global/locBus/LinhaDao");
@@ -62,20 +72,15 @@ public class TestePersistencia {
 
 
 
+
+
         //--------------Empresa
         IRepositorioEmpresa repoEmpresa = (IRepositorioEmpresa) ctx.lookup("java:global/locBus/EmpresaDao");
         Empresa emp = new Empresa();
         emp.setNome("UNIAO");
-        emp.setVeiculo(null);
 
 
-        //--------------Veiculo
-        IRepositorioVeiculo repoVeiculo = (IRepositorioVeiculo) ctx.lookup("java:global/locBus/VeiculoDao");
-        Veiculo v = new Veiculo();
-        v.setImei("123456789123");
-        v.setDescricao("DESCRIÇÃO TESTE");
-        v.setLinha(l);
-        v.setEmpresa(emp);
+
 
 
         //--------------Posição
@@ -84,9 +89,8 @@ public class TestePersistencia {
         pos.setLongitude(987643);
         pos.setLatitude(123456);
         pos.setVeiculo(v);
-        repoPosicao.salvar(pos);
-
-
-
+        v = repoVeiculo.abrir((long)1);
+        
+        System.out.println(v.getId());
     }
 }
