@@ -4,10 +4,15 @@
  */
 package br.com.kpc.locbus.resource;
 
+import javax.ws.rs.Path;
+
 /**
  *
  * @author César
  */
-public class PosicaoResource {
+@Path("/posicoes")
+public class PosicaoResource extends PosicaoFacade{
+        
+    
     
 }

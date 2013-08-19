@@ -24,7 +24,6 @@ public class PosicaoDao extends DaoGenerico<Posicao> implements IRepositorioPosi
 
     @Override
     public Long getCodigo(Posicao obj) {
-        
         return obj.getId();
     }
 
@@ -34,10 +33,10 @@ public class PosicaoDao extends DaoGenerico<Posicao> implements IRepositorioPosi
         consulta.setParameter("veiculo", veiculo);
         return (Posicao) consulta.getSingleResult();
     }
-    
+
     @Override
-    public List<Posicao> getPosiçoesPorVeiculo(int i, Veiculo veiculo) {
-        
+    public List<Posicao> getPosiçoesPorVeiculo(Veiculo veiculo) {
+
         Query consulta = getManager().createQuery("select p from Posicao p where p.veiculo =:veiculo ");
         consulta.setParameter("veiculo", veiculo);
         return consulta.getResultList();
