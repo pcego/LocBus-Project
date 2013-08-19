@@ -28,6 +28,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  */
 @Entity
 @Table(name = "linhas")
+//anotation para possibilitar o retorno como
+//XML/JSON do objeto
 @XmlRootElement
 public class Linha implements Serializable {
 
@@ -65,13 +67,27 @@ public class Linha implements Serializable {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER)
     @JoinTable(name = "paradas_linhas", joinColumns = {
-        @JoinColumn(name = "linha_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "parada_id")})
+    @JoinColumn(name = "linha_id")}, inverseJoinColumns = {
+    @JoinColumn(name = "parada_id")})
     private List<Parada> parada;
-
+    
+    //construtor padrão
     public Linha() {
     }
-
+    
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
+    @JsonIgnore
+    @XmlTransient
+    public List<Parada> getParada() {
+        return parada;
+    }
+        
+    public void setParada(List<Parada> parada) {
+        this.parada = parada;
+    }
+    
+    
     public int getNumeroLinha() {
         return numeroLinha;
     }
@@ -127,13 +143,14 @@ public class Linha implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    @XmlTransient
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
     @JsonIgnore
+    @XmlTransient    
     public List<Veiculo> getVeiculo() {
         return veiculo;
     }
-
+        
     public void setVeiculo(List<Veiculo> veiculo) {
         this.veiculo = veiculo;
     }

@@ -18,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -25,6 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "veiculos")
+//anotation para possibilitar o retorno como
+//XML/JSON do objeto
 @XmlRootElement
 public class Veiculo implements Serializable {
     
@@ -59,6 +63,7 @@ public class Veiculo implements Serializable {
     @Column(nullable = false)
     private boolean status;
     
+    // construtor padrão
     public Veiculo(){
         
     }
@@ -70,7 +75,10 @@ public class Veiculo implements Serializable {
     public void setImei(String imei) {
         this.imei = imei;
     }
-    
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
+    @JsonIgnore
+    @XmlTransient
     public Linha getLinha() {
         return linha;
     }
@@ -78,7 +86,11 @@ public class Veiculo implements Serializable {
     public void setLinha(Linha linha) {
         this.linha = linha;
     }
-
+    
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
+    @JsonIgnore
+    @XmlTransient
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -86,7 +98,11 @@ public class Veiculo implements Serializable {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-
+    
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
+    @JsonIgnore
+    @XmlTransient
     public List<Posicao> getPosicao() {
         return posicao;
     }

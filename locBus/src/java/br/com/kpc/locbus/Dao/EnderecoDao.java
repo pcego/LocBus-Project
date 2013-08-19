@@ -20,7 +20,7 @@ public class EnderecoDao extends DaoGenerico<Endereco> implements IRepositorioEn
     }
 
     @Override
-    protected Long getCodigo(Endereco obj) {
+    public Long getCodigo(Endereco obj) {
         return obj.getId();
     }
 }

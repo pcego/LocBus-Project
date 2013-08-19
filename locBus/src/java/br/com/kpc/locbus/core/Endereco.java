@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "enderecos")
+//anotation para possibilitar o retorno como
+//XML/JSON do objeto
 @XmlRootElement
 public class Endereco implements Serializable {
 
@@ -41,6 +43,7 @@ public class Endereco implements Serializable {
     @Column
     private int numero;
 
+    // construtor padrão 
     public Endereco() {
     }
 

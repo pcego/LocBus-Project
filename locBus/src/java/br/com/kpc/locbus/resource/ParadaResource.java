@@ -4,10 +4,30 @@
  */
 package br.com.kpc.locbus.resource;
 
+import br.com.kpc.locbus.core.Endereco;
+import br.com.kpc.locbus.core.Parada;
+import java.util.List;
+import javax.naming.NamingException;
+import javax.ws.rs.Path;
+
 /**
  *
  * @author César
  */
-public class ParadaResource {
+// anotation @Path define o caminho base para o recurso
+@Path("/paradas")
+public class ParadaResource extends ParadaFacade {
+
+    @Override
+    public List<Parada> getAll() throws NamingException {
+        return super.getAll();
+    }
+
+    @Override
+    public List<Parada> buscaPorRua(Endereco end) throws NamingException {
+        return super.buscaPorRua(end);
+    }
+    
+    
     
 }

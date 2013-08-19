@@ -23,18 +23,18 @@ public class ParadaDao extends DaoGenerico<Parada> implements IRepositorioParada
     }
 
     @Override
-    protected Long getCodigo(Parada obj) {
+    public Long getCodigo(Parada obj) {
         return obj.getId();
     }
 
     @Override
-    public List<Parada> listaTodas() {
+    public List<Parada> getAll() {
         Query consulta = getManager().createQuery("select p from Parada p order by p.id");
         return consulta.getResultList();
     }
 
     @Override
-    public List<Parada> paradasPorRua(Endereco end) {
+    public List<Parada> buscaPorRua(Endereco end) {
 
         Query consulta = getManager().createQuery("");
         return consulta.getResultList();

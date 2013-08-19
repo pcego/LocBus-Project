@@ -18,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -25,6 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "paradas")
+//anotation para possibilitar o retorno como
+//XML/JSON do objeto
 @XmlRootElement
 public class Parada implements Serializable {
 
@@ -54,6 +58,7 @@ public class Parada implements Serializable {
     @JoinColumn(name = "endereco_id", nullable = false, referencedColumnName = "codigo_endereco")
     private Endereco endereco;
     
+    // construtor padrão
     public Parada() {
     }
 
@@ -88,7 +93,11 @@ public class Parada implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
+    
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
+    @JsonIgnore
+    @XmlTransient
     public List<Linha> getLinha() {
         return linha;
     }

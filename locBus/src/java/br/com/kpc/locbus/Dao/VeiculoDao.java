@@ -24,7 +24,7 @@ public class VeiculoDao extends DaoGenerico<Veiculo> implements IRepositorioVeic
     }
 
     @Override
-    protected Long getCodigo(Veiculo obj) {
+    public Long getCodigo(Veiculo obj) {
         return obj.getId();
     }
 

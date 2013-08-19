@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -23,6 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "posicoes")
+//anotation para possibilitar o retorno como
+//XML/JSON do objeto
 @XmlRootElement
 public class Posicao implements Serializable {
    
@@ -45,10 +49,10 @@ public class Posicao implements Serializable {
             nullable = false)
     private Veiculo veiculo;
     
+    // construtor padrão
     public Posicao(){
         
     }
-
     
     public double getLatitude() {
         return latitude;
@@ -65,7 +69,11 @@ public class Posicao implements Serializable {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
-
+    
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
+    @JsonIgnore
+    @XmlTransient
     public Veiculo getVeiculo() {
         return veiculo;
     }

@@ -7,6 +7,11 @@ package br.com.kpc.locbus.Dao;
 import br.com.kpc.locbus.core.IRepositorio;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -26,7 +31,10 @@ public abstract class DaoGenerico<T> implements IRepositorio<T> {
         type = tipo;
     }
 
-    protected abstract Long getCodigo(T obj);
+    @GET
+    @Path("{getCodigo}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public abstract Long getCodigo(@PathParam("{getCodigo}") T obj);
 
     @Override
     public T abrir(Long codigo) throws Exception {

@@ -14,7 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -22,6 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "empresas")
+//anotation para possibilitar o retorno como
+//XML/JSON do objeto
 @XmlRootElement
 public class Empresa implements Serializable {
 
@@ -38,6 +43,7 @@ public class Empresa implements Serializable {
     @OneToMany(mappedBy = "empresa", fetch = FetchType.EAGER)
     private List<Veiculo> veiculo;
 
+    // construtor padrão obrigatório
     public Empresa() {
     }
 
@@ -53,7 +59,10 @@ public class Empresa implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
+    // para relações bi-direcionais
+    @JsonIgnore
+    @XmlTransient
     public List<Veiculo> getVeiculo() {
         return veiculo;
     }

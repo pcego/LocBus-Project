@@ -23,7 +23,7 @@ public class PosicaoDao extends DaoGenerico<Posicao> implements IRepositorioPosi
     }
 
     @Override
-    protected Long getCodigo(Posicao obj) {
+    public Long getCodigo(Posicao obj) {
         
         return obj.getId();
     }
