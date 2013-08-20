@@ -53,8 +53,24 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
     }
 
     @Override
-    public Veiculo listaVeiculoPorImei(String imei) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Veiculo listaVeiculoPorImei(String imei) throws NamingException{
+        
+        Context ctx = (Context) new InitialContext();
+        IRepositorioVeiculo rp;
+        Veiculo v = new Veiculo();
+        
+         try {
+            rp = (IRepositorioVeiculo) ctx.lookup("java:global/locBus/VeiculoDao");
+            v = rp.listaVeiculoPorImei(imei);
+            if(v.getImei() == null){
+                return null;
+            }
+
+        } catch (NamingException ex) {
+            Logger.getLogger(VeiculoResource.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return v;
     }
 
     @Override

@@ -7,8 +7,10 @@ package br.com.kpc.locbus.core;
 import java.util.List;
 import javax.ejb.Remote;
 import javax.naming.NamingException;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -27,9 +29,22 @@ public interface IRepositorioVeiculo extends IRepositorio<Veiculo> {
     @Path("/findAll")
     List<Veiculo> listaTodos() throws NamingException;
 
-    List<Veiculo> listaPorEmpresa(Empresa empresa);
+    // anotation @GET define o método HTTP ao qual o recurso responde
+    @GET
+    // anotation @Produces define o tipo de retorno do recurso
+    @Produces(MediaType.APPLICATION_JSON)
+    // anotation @Path define o caminho para o recurso   
+    @Path("/listaPorEmpresa/{paramEmpresa}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    List<Veiculo> listaPorEmpresa(@PathParam("/listaPorEmpresa/{paramEmpresa}") Empresa empresa);
 
-    Veiculo listaVeiculoPorImei(String imei);
+    // anotation @GET define o método HTTP ao qual o recurso responde
+    @GET
+    // anotation @Produces define o tipo de retorno do recurso
+    @Produces(MediaType.APPLICATION_JSON)
+    // anotation @Path define o caminho para o recurso    
+    @Path("/buscaPorImei/{paramImei}")
+    Veiculo listaVeiculoPorImei(@PathParam("/paramImei") String imei) throws NamingException;
 
     List<Veiculo> listaVeiculosPorLinha(Linha linha);
 }

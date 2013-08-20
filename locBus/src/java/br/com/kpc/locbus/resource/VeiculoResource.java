@@ -32,17 +32,17 @@ public class VeiculoResource extends VeiculoFacade {
 
     @Override
     public List<Veiculo> listaPorEmpresa(Empresa empresa) {
-        return super.listaPorEmpresa(empresa); //To change body of generated methods, choose Tools | Templates.
+        return super.listaPorEmpresa(empresa); 
     }
 
     @Override
-    public Veiculo listaVeiculoPorImei(String imei) {
-        return super.listaVeiculoPorImei(imei); //To change body of generated methods, choose Tools | Templates.
+    public Veiculo listaVeiculoPorImei(String imei) throws NamingException {
+        return super.listaVeiculoPorImei(imei); 
     }
 
     @Override
     public List<Veiculo> listaVeiculosPorLinha(Linha linha) {
-        return super.listaVeiculosPorLinha(linha); //To change body of generated methods, choose Tools | Templates.
+        return super.listaVeiculosPorLinha(linha); 
     }
     
     
