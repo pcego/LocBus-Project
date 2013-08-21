@@ -18,9 +18,4 @@ public class EnderecoDao extends DaoGenerico<Endereco> implements IRepositorioEn
     public EnderecoDao() {
         super(Endereco.class);
     }
-
-    @Override
-    public Long getCodigo(Endereco obj) {
-        return obj.getId();
-    }
 }

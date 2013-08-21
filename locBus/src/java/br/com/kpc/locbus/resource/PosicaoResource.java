@@ -17,11 +17,6 @@ import javax.ws.rs.Path;
 public class PosicaoResource extends PosicaoFacade {
 
     @Override
-    public Long getCodigo(Posicao obj) {
-        return super.getCodigo(obj);
-    }
-
-    @Override
     public Posicao getUltimaPosicao(Veiculo veiculo) {
         return super.getUltimaPosicao(veiculo);
     }

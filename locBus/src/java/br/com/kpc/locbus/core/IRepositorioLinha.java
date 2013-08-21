@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Remote
 public interface IRepositorioLinha extends IRepositorio<Linha> {
-    
+
     // anotation @GET define o método HTTP ao qual o recurso responde
     @GET
     // anotation @Produces define o tipo de retorno do recurso
@@ -28,15 +28,21 @@ public interface IRepositorioLinha extends IRepositorio<Linha> {
     @Path("/findAll")
     List<Linha> findAll() throws NamingException;
     
+    // anotation @GET define o método HTTP ao qual o recurso responde
     @GET
+    // anotation @Produces define o tipo de retorno do recurso
     @Produces(MediaType.APPLICATION_JSON)
+    // anotation @Path define o caminho para o recurso
     @Path("/getByParada/{paramParada}")
     // anotation @PathParam define a variável para receber parametro do método        
-    List<Linha> getByParada(@PathParam("{/getByParada/{paramParada}}")Parada parada) throws NamingException;
-    
+    List<Linha> getByParada(@PathParam("paramParada") Parada parada) throws NamingException;
+
+    // anotation @GET define o método HTTP ao qual o recurso responde
     @GET
-    @Produces(MediaType.APPLICATION_JSON)    
+    // anotation @Produces define o tipo de retorno do recurso
+    @Produces(MediaType.APPLICATION_JSON)
+    // anotation @Path define o caminho para o recurso
     @Path("/buscaPorEmpresa/{paramEmpresa}")
     // anotation @PathParam define a variável para receber parametro do método                
-    List<Linha> listaLinhasPorEmpresa(@PathParam("/buscaPorEmpresa/{paramEmpresa}")Empresa empresa)throws NamingException;
+    List<Linha> listaLinhasPorEmpresa(@PathParam("paramEmpresa") Empresa empresa) throws NamingException;
 }

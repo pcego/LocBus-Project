@@ -20,31 +20,22 @@ import javax.ws.rs.Path;
 public class VeiculoResource extends VeiculoFacade {
 
     @Override
-    public Long getCodigo(Veiculo obj) {
-        return obj.getId();
-        
-    }
-
-    @Override
-    public List<Veiculo> listaTodos() throws NamingException{
-        return super.listaTodos(); 
+    public List<Veiculo> listaTodos() throws NamingException {
+        return super.listaTodos();
     }
 
     @Override
     public List<Veiculo> listaPorEmpresa(Empresa empresa) {
-        return super.listaPorEmpresa(empresa); 
+        return super.listaPorEmpresa(empresa);
     }
 
     @Override
     public Veiculo listaVeiculoPorImei(String imei) throws NamingException {
-        return super.listaVeiculoPorImei(imei); 
+        return super.listaVeiculoPorImei(imei);
     }
 
     @Override
     public List<Veiculo> listaVeiculosPorLinha(Linha linha) {
-        return super.listaVeiculosPorLinha(linha); 
+        return super.listaVeiculosPorLinha(linha);
     }
-    
-    
-    
 }

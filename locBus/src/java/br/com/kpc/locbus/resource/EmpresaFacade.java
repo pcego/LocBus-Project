@@ -7,6 +7,7 @@ package br.com.kpc.locbus.resource;
 import br.com.kpc.locbus.Dao.DaoGenerico;
 import br.com.kpc.locbus.core.Empresa;
 import br.com.kpc.locbus.core.IRepositorioEmpresa;
+import br.com.kpc.locbus.servico.ContextoInicial;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,15 +26,14 @@ public abstract class EmpresaFacade extends DaoGenerico<Empresa> implements IRep
     public EmpresaFacade() {
         super(Empresa.class);
     }
-        
+
     public List<Empresa> listaTodos() throws NamingException {
 
-        Context ctx = (Context) new InitialContext();
         IRepositorioEmpresa rp;
         List<Empresa> lst = new ArrayList<Empresa>();
 
         try {
-            rp = (IRepositorioEmpresa) ctx.lookup("java:global/locBus/EmpresaDao");
+            rp = (IRepositorioEmpresa) ContextoInicial.getContext().lookup("java:global/locBus/EmpresaDao");
             lst = rp.listaTodas();
 
         } catch (NamingException ex) {
@@ -43,10 +43,5 @@ public abstract class EmpresaFacade extends DaoGenerico<Empresa> implements IRep
 
         return lst;
 
-    }
-
-    @Override
-    public Long getCodigo(@PathParam("{getCodigo}") Empresa obj) {
-        return obj.getId();
     }
 }

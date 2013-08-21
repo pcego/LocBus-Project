@@ -23,11 +23,6 @@ public class PosicaoDao extends DaoGenerico<Posicao> implements IRepositorioPosi
     }
 
     @Override
-    public Long getCodigo(Posicao obj) {
-        return obj.getId();
-    }
-
-    @Override
     public Posicao getUltimaPosicao(Veiculo veiculo) {
         Query consulta = getManager().createQuery("select p MAX(p.id) from Posicao p where p.veiculo =:veiculo");
         consulta.setParameter("veiculo", veiculo);

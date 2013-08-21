@@ -20,12 +20,7 @@ public abstract class PosicaoFacade extends DaoGenerico<Posicao> implements IRep
     public PosicaoFacade(){
         super(Posicao.class);
     }
-
-    @Override
-    public Long getCodigo(@PathParam("{getCodigo}")Posicao obj) {
-        return obj.getId();
-    }
-
+   
     @Override
     public Posicao getUltimaPosicao(Veiculo veiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

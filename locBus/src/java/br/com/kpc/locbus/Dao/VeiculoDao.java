@@ -24,11 +24,6 @@ public class VeiculoDao extends DaoGenerico<Veiculo> implements IRepositorioVeic
     }
 
     @Override
-    public Long getCodigo(Veiculo obj) {
-        return obj.getId();
-    }
-
-    @Override
     public List<Veiculo> listaTodos() {
 
         Query consulta = getManager().createQuery("select v from Veiculo v order by v.id");

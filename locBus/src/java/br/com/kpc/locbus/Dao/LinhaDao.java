@@ -24,11 +24,6 @@ public class LinhaDao extends DaoGenerico<Linha> implements IRepositorioLinha {
     }
 
     @Override
-    public Long getCodigo(Linha obj) {
-        return obj.getId();
-    }
-
-    @Override
     public List<Linha> findAll() {
 
         Query consulta = getManager().createQuery("select l from Linha l order by l.numeroLinha");
