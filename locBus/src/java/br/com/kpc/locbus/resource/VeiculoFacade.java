@@ -22,6 +22,10 @@ import javax.naming.NamingException;
  */
 public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRepositorioVeiculo {
 
+    private IRepositorioVeiculo rp;
+    private List<Veiculo> lst = new ArrayList<Veiculo>();
+    private Veiculo v = new Veiculo();
+
     public VeiculoFacade() {
         super(Veiculo.class);
     }
@@ -29,10 +33,9 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
     @Override
     public List<Veiculo> listaTodos() throws NamingException {
 
-        IRepositorioVeiculo rp;
-        List<Veiculo> lst = new ArrayList<Veiculo>();
-
         try {
+
+            lst.clear();
             rp = (IRepositorioVeiculo) ContextoInicial.getContext().lookup("java:global/locBus/VeiculoDao");
             lst = rp.listaTodos();
 
@@ -47,14 +50,23 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
 
     @Override
     public List<Veiculo> listaPorEmpresa(Empresa empresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+
+            lst.clear();
+            rp = (IRepositorioVeiculo) ContextoInicial.getContext().lookup("java:global/locBus/VeiculoDao");
+            lst = rp.listaPorEmpresa(empresa);
+
+        } catch (NamingException ex) {
+            Logger.getLogger(VeiculoResource.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+        return lst;
     }
 
     @Override
     public Veiculo listaVeiculoPorImei(String imei) throws NamingException {
-
-        IRepositorioVeiculo rp;
-        Veiculo v = new Veiculo();
 
         try {
             rp = (IRepositorioVeiculo) ContextoInicial.getContext().lookup("java:global/locBus/VeiculoDao");
@@ -69,6 +81,18 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
 
     @Override
     public List<Veiculo> listaVeiculosPorLinha(Linha linha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+
+            lst.clear();
+            rp = (IRepositorioVeiculo) ContextoInicial.getContext().lookup("java:global/locBus/VeiculoDao");
+            lst = rp.listaVeiculosPorLinha(linha);
+
+        } catch (NamingException ex) {
+            Logger.getLogger(VeiculoResource.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+        return lst;
     }
 }

@@ -33,7 +33,6 @@ public interface IRepositorioPosicao extends IRepositorio<Posicao> {
     // anotation @Produces define o tipo de retorno do recurso
     @Produces(MediaType.APPLICATION_JSON)
     // anotation @Path define o caminho para o recurso
-    @Path("/getPosicoesPorVeiculo/{paramVeiculo}")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/getPosicoesPorVeiculo/{paramVeiculo}")   
     List<Posicao> getPosiçoesPorVeiculo(@PathParam("paramVeiculo") Veiculo veiculo);
 }

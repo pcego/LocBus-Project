@@ -31,7 +31,8 @@ public class ParadaDao extends DaoGenerico<Parada> implements IRepositorioParada
     @Override
     public List<Parada> buscaPorRua(Endereco end) {
 
-        Query consulta = getManager().createQuery("");
+        Query consulta = getManager().createQuery("select p from Parada p where p.endereco = :end");
+        consulta.setParameter("end", end);
         return consulta.getResultList();
     }
 }

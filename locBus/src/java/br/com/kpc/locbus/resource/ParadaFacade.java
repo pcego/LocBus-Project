@@ -22,6 +22,9 @@ import javax.ws.rs.PathParam;
  */
 public abstract class ParadaFacade extends DaoGenerico<Parada> implements IRepositorioParada {
 
+    private IRepositorioParada rp;
+    private List<Parada> lst = new ArrayList<Parada>();
+
     public ParadaFacade() {
         super(Parada.class);
     }
@@ -29,10 +32,9 @@ public abstract class ParadaFacade extends DaoGenerico<Parada> implements IRepos
     @Override
     public List<Parada> getAll() throws NamingException {
 
-        IRepositorioParada rp;
-        List<Parada> lst = new ArrayList<Parada>();
-
         try {
+
+            lst.clear();
             rp = (IRepositorioParada) ContextoInicial.getContext().lookup("java:global/locBus/ParadaDao");
             lst = rp.getAll();
 
@@ -46,6 +48,19 @@ public abstract class ParadaFacade extends DaoGenerico<Parada> implements IRepos
 
     @Override
     public List<Parada> buscaPorRua(Endereco end) throws NamingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+         try {
+
+            lst.clear();
+            rp = (IRepositorioParada) ContextoInicial.getContext().lookup("java:global/locBus/ParadaDao");
+            lst = rp.buscaPorRua(end);
+
+        } catch (NamingException ex) {
+            Logger.getLogger(ParadaResource.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+         
+        return lst;
+        
     }
 }

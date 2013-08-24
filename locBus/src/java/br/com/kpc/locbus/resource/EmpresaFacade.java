@@ -23,16 +23,18 @@ import javax.ws.rs.PathParam;
  */
 public abstract class EmpresaFacade extends DaoGenerico<Empresa> implements IRepositorioEmpresa {
 
+    private IRepositorioEmpresa rp;
+    private List<Empresa> lst = new ArrayList<Empresa>();
+
     public EmpresaFacade() {
         super(Empresa.class);
     }
 
     public List<Empresa> listaTodos() throws NamingException {
 
-        IRepositorioEmpresa rp;
-        List<Empresa> lst = new ArrayList<Empresa>();
-
         try {
+            
+            lst.clear();
             rp = (IRepositorioEmpresa) ContextoInicial.getContext().lookup("java:global/locBus/EmpresaDao");
             lst = rp.listaTodas();
 

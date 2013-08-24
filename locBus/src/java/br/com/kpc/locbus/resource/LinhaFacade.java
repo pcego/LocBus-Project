@@ -15,13 +15,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
-import javax.ws.rs.PathParam;
 
 /**
  *
  * @author César
  */
 public abstract class LinhaFacade extends DaoGenerico<Linha> implements IRepositorioLinha {
+
+    private IRepositorioLinha rp;
+    private List<Linha> lst = new ArrayList<Linha>();
 
     public LinhaFacade() {
         super(Linha.class);
@@ -30,10 +32,9 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
     @Override
     public List<Linha> findAll() throws NamingException {
 
-        IRepositorioLinha rp;
-        List<Linha> lst = new ArrayList<Linha>();
-
         try {
+
+            lst.clear();
             rp = (IRepositorioLinha) ContextoInicial.getContext().lookup("java:global/locBus/LinhaDao");
             lst = rp.findAll();
 
@@ -47,11 +48,36 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
 
     @Override
     public List<Linha> getByParada(Parada parada) throws NamingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+
+            lst.clear();
+            rp = (IRepositorioLinha) ContextoInicial.getContext().lookup("java:global/locBus/LinhaDao");
+            lst = rp.getByParada(parada);
+
+        } catch (NamingException ex) {
+            Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+        return lst;
+
     }
 
     @Override
     public List<Linha> listaLinhasPorEmpresa(Empresa empresa) throws NamingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+
+            lst.clear();
+            rp = (IRepositorioLinha) ContextoInicial.getContext().lookup("java:global/locBus/LinhaDao");
+            lst = rp.listaLinhasPorEmpresa(empresa);
+
+        } catch (NamingException ex) {
+            Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+        return lst;
     }
 }

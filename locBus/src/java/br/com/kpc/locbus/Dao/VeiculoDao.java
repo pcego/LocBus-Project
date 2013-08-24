@@ -33,7 +33,8 @@ public class VeiculoDao extends DaoGenerico<Veiculo> implements IRepositorioVeic
     @Override
     public List<Veiculo> listaPorEmpresa(Empresa empresa) {
 
-        Query consulta = getManager().createQuery("");
+        Query consulta = getManager().createQuery("select v from Veiculo v where v.empresa = :empresa");
+        consulta.setParameter("empresa", empresa);
         return consulta.getResultList();
     }
 
@@ -48,7 +49,8 @@ public class VeiculoDao extends DaoGenerico<Veiculo> implements IRepositorioVeic
     @Override
     public List<Veiculo> listaVeiculosPorLinha(Linha linha) {
 
-        Query consulta = getManager().createQuery("");
+        Query consulta = getManager().createQuery("select v from Veiculo v where v.linha = :linha");
+        consulta.setParameter("linha", linha);
         return consulta.getResultList();
     }
 }
