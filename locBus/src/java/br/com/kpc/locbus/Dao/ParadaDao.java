@@ -4,7 +4,6 @@
  */
 package br.com.kpc.locbus.Dao;
 
-import br.com.kpc.locbus.core.Endereco;
 import br.com.kpc.locbus.core.IRepositorioParada;
 import br.com.kpc.locbus.core.Parada;
 import java.util.List;
@@ -29,10 +28,10 @@ public class ParadaDao extends DaoGenerico<Parada> implements IRepositorioParada
     }
 
     @Override
-    public List<Parada> buscaPorRua(Endereco end) {
+    public List<Parada> buscaPorRua(String rua) {
 
-        Query consulta = getManager().createQuery("select p from Parada p where p.endereco = :end");
-        consulta.setParameter("end", end);
+        Query consulta = getManager().createQuery("select p from Parada p where p.endereco.rua = :rua");
+        consulta.setParameter("rua", rua);
         return consulta.getResultList();
     }
 }

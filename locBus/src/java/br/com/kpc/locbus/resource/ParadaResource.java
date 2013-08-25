@@ -24,8 +24,8 @@ public class ParadaResource extends ParadaFacade {
     }
 
     @Override
-    public List<Parada> buscaPorRua(Endereco end) throws NamingException {
-        return super.buscaPorRua(end);
+    public List<Parada> buscaPorRua(String rua) throws NamingException {
+        return super.buscaPorRua(rua);
     }
     
     

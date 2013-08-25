@@ -17,12 +17,12 @@ import javax.ws.rs.Path;
 public class PosicaoResource extends PosicaoFacade {
 
     @Override
-    public Posicao getUltimaPosicao(Veiculo veiculo) {
-        return super.getUltimaPosicao(veiculo);
+    public Posicao getUltimaPosicao(String imei) {
+        return super.getUltimaPosicao(imei);
     }
 
     @Override
-    public List<Posicao> getPosiçoesPorVeiculo(Veiculo veiculo) {
-        return super.getPosiçoesPorVeiculo(veiculo);
+    public List<Posicao> getPosicoesPorVeiculo(String imei) {
+        return super.getPosicoesPorVeiculo(imei);
     }
 }

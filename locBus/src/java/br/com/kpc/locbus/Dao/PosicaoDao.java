@@ -6,7 +6,6 @@ package br.com.kpc.locbus.Dao;
 
 import br.com.kpc.locbus.core.IRepositorioPosicao;
 import br.com.kpc.locbus.core.Posicao;
-import br.com.kpc.locbus.core.Veiculo;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -23,17 +22,20 @@ public class PosicaoDao extends DaoGenerico<Posicao> implements IRepositorioPosi
     }
 
     @Override
-    public Posicao getUltimaPosicao(Veiculo veiculo) {
-        Query consulta = getManager().createQuery("select p MAX(p.id) from Posicao p where p.veiculo =:veiculo");
-        consulta.setParameter("veiculo", veiculo);
+    public Posicao getUltimaPosicao(String imei) {
+        Query consulta = getManager().createQuery("select p from Posicao "
+                + "p where p.veiculo.imei = :imei AND "
+                + "p.id = (select MAX(p.id) from Posicao p where p.veiculo.imei = :imei)");
+        consulta.setParameter("imei", imei);
         return (Posicao) consulta.getSingleResult();
     }
 
     @Override
-    public List<Posicao> getPosiçoesPorVeiculo(Veiculo veiculo) {
+    public List<Posicao> getPosicoesPorVeiculo(String imei) {
 
-        Query consulta = getManager().createQuery("select p from Posicao p where p.veiculo =:veiculo ");
-        consulta.setParameter("veiculo", veiculo);
+        Query consulta = getManager().createQuery("select p from Posicao p where"
+                + " p.veiculo.imei = :imei order by p.id");
+        consulta.setParameter("imei", imei);
         return consulta.getResultList();
     }
 }

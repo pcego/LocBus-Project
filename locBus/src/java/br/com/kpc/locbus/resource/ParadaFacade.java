@@ -47,13 +47,13 @@ public abstract class ParadaFacade extends DaoGenerico<Parada> implements IRepos
     }
 
     @Override
-    public List<Parada> buscaPorRua(Endereco end) throws NamingException {
+    public List<Parada> buscaPorRua(String rua) throws NamingException {
         
          try {
 
             lst.clear();
             rp = (IRepositorioParada) ContextoInicial.getContext().lookup("java:global/locBus/ParadaDao");
-            lst = rp.buscaPorRua(end);
+            lst = rp.buscaPorRua(rua);
 
         } catch (NamingException ex) {
             Logger.getLogger(ParadaResource.class.getName()).log(Level.SEVERE, null, ex);

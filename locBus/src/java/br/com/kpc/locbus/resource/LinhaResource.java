@@ -4,9 +4,7 @@
  */
 package br.com.kpc.locbus.resource;
 
-import br.com.kpc.locbus.core.Empresa;
 import br.com.kpc.locbus.core.Linha;
-import br.com.kpc.locbus.core.Parada;
 import java.util.List;
 import javax.naming.NamingException;
 import javax.ws.rs.Path;
@@ -20,13 +18,13 @@ import javax.ws.rs.Path;
 public class LinhaResource extends LinhaFacade {
 
     @Override
-    public List<Linha> getByParada(Parada parada) throws NamingException {
-        return super.getByParada(parada);
+    public List<Linha> getByParada(int parada_id) throws NamingException {
+        return super.getByParada(parada_id);
     }
 
     @Override
-    public List<Linha> listaLinhasPorEmpresa(Empresa empresa) throws NamingException {
-        return super.listaLinhasPorEmpresa(empresa);
+    public List<Linha> listaLinhasPorEmpresa(String nome) throws NamingException {
+        return super.listaLinhasPorEmpresa(nome);
         
     }
 

@@ -6,7 +6,6 @@ package br.com.kpc.locbus.core;
 
 import java.util.List;
 import javax.ejb.Remote;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -26,13 +25,13 @@ public interface IRepositorioPosicao extends IRepositorio<Posicao> {
     @Produces(MediaType.APPLICATION_JSON)
     // anotation @Path define o caminho para o recurso
     @Path("/getUltimaPosicao/{paramVeiculo}")
-    Posicao getUltimaPosicao(@PathParam("paramVeiculo") Veiculo veiculo);
+    Posicao getUltimaPosicao(@PathParam("paramVeiculo") String imei);
 
     // anotation @GET define o método HTTP ao qual o recurso responde
     @GET
     // anotation @Produces define o tipo de retorno do recurso
     @Produces(MediaType.APPLICATION_JSON)
-    // anotation @Path define o caminho para o recurso
-    @Path("/getPosicoesPorVeiculo/{paramVeiculo}")   
-    List<Posicao> getPosiçoesPorVeiculo(@PathParam("paramVeiculo") Veiculo veiculo);
+    // anotation @Path define o caminho para o recurso      
+    @Path("/getPosicoesPorVeiculo/{paramVeiculo}")
+    List<Posicao> getPosicoesPorVeiculo(@PathParam("paramVeiculo") String imei);
 }

@@ -35,5 +35,5 @@ public interface IRepositorioParada extends IRepositorio<Parada> {
     // anotation @Path define o caminho para o recurso
     @Path("/getPorRua/{paramEnd}")
     // anotation @PathParam define a variável para receber parametro do método        
-    List<Parada> buscaPorRua(@PathParam("paramEnd") Endereco end) throws NamingException;
+    List<Parada> buscaPorRua(@PathParam("paramEnd") String rua) throws NamingException;
 }

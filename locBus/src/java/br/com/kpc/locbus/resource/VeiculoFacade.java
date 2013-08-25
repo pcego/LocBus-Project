@@ -49,7 +49,7 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
     }
 
     @Override
-    public List<Veiculo> listaPorEmpresa(Empresa empresa) {
+    public List<Veiculo> listaPorEmpresa(String empresa) {
 
         try {
 
@@ -80,7 +80,7 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
     }
 
     @Override
-    public List<Veiculo> listaVeiculosPorLinha(Linha linha) {
+    public List<Veiculo> listaVeiculosPorLinha(int linha) {
 
         try {
 

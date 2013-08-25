@@ -47,13 +47,13 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
     }
 
     @Override
-    public List<Linha> getByParada(Parada parada) throws NamingException {
+    public List<Linha> getByParada(int parada_id) throws NamingException {
 
         try {
 
             lst.clear();
             rp = (IRepositorioLinha) ContextoInicial.getContext().lookup("java:global/locBus/LinhaDao");
-            lst = rp.getByParada(parada);
+            lst = rp.getByParada(parada_id);
 
         } catch (NamingException ex) {
             Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,13 +65,13 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
     }
 
     @Override
-    public List<Linha> listaLinhasPorEmpresa(Empresa empresa) throws NamingException {
+    public List<Linha> listaLinhasPorEmpresa(String nome) throws NamingException {
 
         try {
 
             lst.clear();
             rp = (IRepositorioLinha) ContextoInicial.getContext().lookup("java:global/locBus/LinhaDao");
-            lst = rp.listaLinhasPorEmpresa(empresa);
+            lst = rp.listaLinhasPorEmpresa(nome);
 
         } catch (NamingException ex) {
             Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);

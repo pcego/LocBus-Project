@@ -25,7 +25,7 @@ public class VeiculoResource extends VeiculoFacade {
     }
 
     @Override
-    public List<Veiculo> listaPorEmpresa(Empresa empresa) {
+    public List<Veiculo> listaPorEmpresa(String empresa) {
         return super.listaPorEmpresa(empresa);
     }
 
@@ -35,7 +35,7 @@ public class VeiculoResource extends VeiculoFacade {
     }
 
     @Override
-    public List<Veiculo> listaVeiculosPorLinha(Linha linha) {
+    public List<Veiculo> listaVeiculosPorLinha(int linha) {
         return super.listaVeiculosPorLinha(linha);
     }
 }

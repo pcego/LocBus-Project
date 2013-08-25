@@ -34,7 +34,7 @@ public interface IRepositorioVeiculo extends IRepositorio<Veiculo> {
     @Produces(MediaType.APPLICATION_JSON)
     // anotation @Path define o caminho para o recurso   
     @Path("/listaPorEmpresa/{paramEmpresa}")    
-    List<Veiculo> listaPorEmpresa(@PathParam("paramEmpresa") Empresa empresa);
+    List<Veiculo> listaPorEmpresa(@PathParam("paramEmpresa") String empresa);
 
     // anotation @GET define o método HTTP ao qual o recurso responde
     @GET
@@ -50,5 +50,5 @@ public interface IRepositorioVeiculo extends IRepositorio<Veiculo> {
     @Produces(MediaType.APPLICATION_JSON)
     // anotation @Path define o caminho para o recurso    
     @Path("/buscaPorLinha/{paramLinha}")
-    List<Veiculo> listaVeiculosPorLinha(@PathParam("paramLinha")Linha linha);
+    List<Veiculo> listaVeiculosPorLinha(@PathParam("paramLinha") int linha);
 }

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
-import javax.ws.rs.PathParam;
 
 /**
  *
@@ -31,15 +30,15 @@ public abstract class PosicaoFacade extends DaoGenerico<Posicao> implements IRep
     }
 
     @Override
-    public Posicao getUltimaPosicao(Veiculo veiculo) {
+    public Posicao getUltimaPosicao(String imei) {
 
         try {
 
             rp = (IRepositorioPosicao) ContextoInicial.getContext().lookup("java:global/locBus/PosicaoDao");
-            pos = rp.getUltimaPosicao(veiculo);
+            pos = rp.getUltimaPosicao(imei);
 
         } catch (NamingException ex) {
-            Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PosicaoResource.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
 
@@ -47,16 +46,16 @@ public abstract class PosicaoFacade extends DaoGenerico<Posicao> implements IRep
     }
 
     @Override
-    public List<Posicao> getPosiçoesPorVeiculo(Veiculo veiculo) {
+    public List<Posicao> getPosicoesPorVeiculo(String id) {
 
         try {
 
             lst.clear();
             rp = (IRepositorioPosicao) ContextoInicial.getContext().lookup("java:global/locBus/PosicaoDao");
-            lst = rp.getPosiçoesPorVeiculo(veiculo);
+            lst = rp.getPosicoesPorVeiculo(id);
 
         } catch (NamingException ex) {
-            Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PosicaoResource.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
 

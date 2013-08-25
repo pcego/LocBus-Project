@@ -4,9 +4,7 @@
  */
 package br.com.kpc.locbus.Dao;
 
-import br.com.kpc.locbus.core.Empresa;
 import br.com.kpc.locbus.core.IRepositorioVeiculo;
-import br.com.kpc.locbus.core.Linha;
 import br.com.kpc.locbus.core.Veiculo;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -31,9 +29,9 @@ public class VeiculoDao extends DaoGenerico<Veiculo> implements IRepositorioVeic
     }
 
     @Override
-    public List<Veiculo> listaPorEmpresa(Empresa empresa) {
+    public List<Veiculo> listaPorEmpresa(String empresa) {
 
-        Query consulta = getManager().createQuery("select v from Veiculo v where v.empresa = :empresa");
+        Query consulta = getManager().createQuery("select v from Veiculo v where v.empresa.nome = :empresa group by v.empresa.nome");
         consulta.setParameter("empresa", empresa);
         return consulta.getResultList();
     }
@@ -47,9 +45,9 @@ public class VeiculoDao extends DaoGenerico<Veiculo> implements IRepositorioVeic
     }
 
     @Override
-    public List<Veiculo> listaVeiculosPorLinha(Linha linha) {
+    public List<Veiculo> listaVeiculosPorLinha(int linha) {
 
-        Query consulta = getManager().createQuery("select v from Veiculo v where v.linha = :linha");
+        Query consulta = getManager().createQuery("select v from Veiculo v where v.linha.numeroLinha = :linha");
         consulta.setParameter("linha", linha);
         return consulta.getResultList();
     }

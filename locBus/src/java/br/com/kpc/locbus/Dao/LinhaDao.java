@@ -4,10 +4,8 @@
  */
 package br.com.kpc.locbus.Dao;
 
-import br.com.kpc.locbus.core.Empresa;
 import br.com.kpc.locbus.core.IRepositorioLinha;
 import br.com.kpc.locbus.core.Linha;
-import br.com.kpc.locbus.core.Parada;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -32,18 +30,21 @@ public class LinhaDao extends DaoGenerico<Linha> implements IRepositorioLinha {
     }
 
     @Override
-    public List<Linha> getByParada(Parada parada) {
-
-        Query consulta = getManager().createQuery("select l from Linha l where l.parada=:parada");
-        consulta.setParameter("parada", parada);
+    public List<Linha> getByParada(int parada_id) {
+        final String sql;
+        sql = "select *from linhas as l join paradas_linhas as pl on "
+                + "l.codigo_linha = pl.linha_id join paradas as p on "
+                + "p.codigo_parada = pl.parada_id where p.codigo_parada = " + parada_id + ";";
+        Query consulta = getManager().createNativeQuery(sql, Linha.class);        
         return consulta.getResultList();
     }
 
     @Override
-    public List<Linha> listaLinhasPorEmpresa(Empresa empresa) {
-
-        Query consulta = getManager().createQuery("select l from Linha l JOIN l.veiculo.empresa =:empresa");
-        consulta.setParameter("empresa", empresa);
+    public List<Linha> listaLinhasPorEmpresa(String nome) {
+        System.out.println("teste " + nome);
+        Query consulta = getManager().createQuery("select l from Linha l JOIN Veiculo v on l.veiculo = v.linha_id "
+                + "JOIN Empresa e on e.veiculo = v.empresa_id where e.nome = :nome");
+        consulta.setParameter("nome", nome);
         return consulta.getResultList();
     }
 }
