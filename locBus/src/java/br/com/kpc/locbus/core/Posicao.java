@@ -43,7 +43,7 @@ public class Posicao implements Serializable {
     @Column(nullable = false)
     private double longitude;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+    @ManyToOne(cascade = {CascadeType.REFRESH},
             optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "veiculo_id", referencedColumnName = "codigo_veiculo",
             nullable = false)
@@ -53,6 +53,14 @@ public class Posicao implements Serializable {
     public Posicao(){
         
     }
+
+    public Posicao(double latitude, double longitude, Veiculo veiculo) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.veiculo = veiculo;
+    }
+    
+    
     
     public double getLatitude() {
         return latitude;

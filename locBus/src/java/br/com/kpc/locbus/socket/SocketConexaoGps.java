@@ -4,6 +4,8 @@
  */
 package br.com.kpc.locbus.socket;
 
+import br.com.kpc.locbus.protocolo.DecProtocoloTk102b;
+import br.com.kpc.locbus.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,34 +16,56 @@ import java.net.Socket;
  *
  * @author César
  */
-public class SocketConexaoGps {
+public class SocketConexaoGps implements Runnable {
 
-    public static void main(String[] args) throws IOException {
+    private BufferedReader rastreador;
+    private String msgRastreador;
+    private ServerSocket socket;
+    private Socket connectionSocket;
+    private DecProtocoloTk102b decoder;
+    private static final int PORTA = 9000;
+
+    @Override
+    public void run() {
 
         try {
 
-            String msgRastreador = null;
-            ServerSocket socket = new ServerSocket(9000);
+            socket = new ServerSocket(PORTA);
 
-            // loop infinito para ouvir porta
+            // loop infinito para ouvir porta 
+            Log.info("SocketConexaoGps.class - Ouvindo Porta: " + PORTA);
+
             while (true) {
 
-                Socket connectionSocket = socket.accept();
-                System.out.println("IP CLIENTE: "
-                        + connectionSocket.getInetAddress().getHostAddress());
+                connectionSocket = socket.accept();
+                msgRastreador = null;
 
-                BufferedReader rastreador = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-
+                Log.info("IP CLIENTE: " + connectionSocket.getInetAddress().getHostAddress());
+                System.out.println("ip " + connectionSocket.getInetAddress().getHostAddress());
+                
+                rastreador = null;
+                rastreador = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
                 msgRastreador = rastreador.readLine();
-                System.out.println(msgRastreador);
-                System.out.println("");
+                                
+                System.out.println("mensagem " + msgRastreador);
 
-                connectionSocket.close();
-                rastreador.close();
+                decoder = new DecProtocoloTk102b();
+
+                decoder.decodificadorTk102(msgRastreador);
 
             }
+
         } catch (IOException ex) {
-            System.out.println("Problemas ao ouvir porta!!" + ex.getMessage());
+            Log.erro("Falha ao ouvir porta!!" + ex.getCause());
+        } finally {
+            try {
+                rastreador.close();
+                connectionSocket.close();
+            } catch (IOException ex) {
+                System.out.println("conexão fechada");
+            }
+
         }
     }
 }
+    
