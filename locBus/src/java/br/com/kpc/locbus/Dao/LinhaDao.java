@@ -43,8 +43,8 @@ public class LinhaDao extends DaoGenerico<Linha> implements IRepositorioLinha {
     public List<Linha> listaLinhasPorEmpresa(String nome) {
 
         Query consulta = getManager().createQuery("select l from Linha l JOIN Veiculo v on l.veiculo = v.linha_id "
-                + "JOIN Empresa e on e.veiculo = v.empresa_id where e.nome = :nome AND l.status = true");
-        consulta.setParameter("nome", nome);
+                + "JOIN Empresa e on e.veiculo = v.empresa_id where e.nome LIKE :nome AND l.status = true");
+        consulta.setParameter("nome", "%" + nome + "%");
         return consulta.getResultList();
     }
 }

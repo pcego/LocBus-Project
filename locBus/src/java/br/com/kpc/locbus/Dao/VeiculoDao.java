@@ -32,8 +32,8 @@ public class VeiculoDao extends DaoGenerico<Veiculo> implements IRepositorioVeic
     public List<Veiculo> listaPorEmpresa(String empresa) {
 
         Query consulta = getManager().createQuery("select v from Veiculo v "
-                + "where v.empresa.nome = :empresa group by v.empresa.nome");
-        consulta.setParameter("empresa", empresa);
+                + "where v.empresa.nome LIKE :empresa group by v.empresa.nome");
+        consulta.setParameter("empresa", "%" + empresa + "%");
         return consulta.getResultList();
     }
 

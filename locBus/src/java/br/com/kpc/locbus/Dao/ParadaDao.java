@@ -34,9 +34,9 @@ public class ParadaDao extends DaoGenerico<Parada> implements IRepositorioParada
     public List<Parada> buscaPorRua(String rua) {
 
         Query consulta = getManager().createQuery("select p from Parada p "
-                + "where p.rua = :rua AND "
+                + "where p.rua LIKE :rua AND "
                 + "p.status = true");
-        consulta.setParameter("rua", rua);
+        consulta.setParameter("rua", "%" + rua + "%");
         return consulta.getResultList();
     }
 
@@ -44,9 +44,9 @@ public class ParadaDao extends DaoGenerico<Parada> implements IRepositorioParada
     public List<Parada> buscaPorBairro(String bairro) throws NamingException {
 
         Query consulta = getManager().createQuery("select p from Parada p "
-                + "where p.bairro = :bairro AND "
+                + "where p.bairro LIKE :bairro AND "
                 + "p.status = true");
-        consulta.setParameter("bairro", bairro);
+        consulta.setParameter("bairro", "%" + bairro + "%");
         return consulta.getResultList();
     }
 }
