@@ -75,6 +75,7 @@ public class Veiculo implements Serializable {
     public void setImei(String imei) {
         this.imei = imei;
     }
+    
     // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
     // para relações bi-direcionais
     @JsonIgnore

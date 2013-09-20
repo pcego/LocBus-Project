@@ -5,9 +5,7 @@
 package br.com.kpc.locbus.resource;
 
 import br.com.kpc.locbus.Dao.DaoGenerico;
-import br.com.kpc.locbus.core.Empresa;
 import br.com.kpc.locbus.core.IRepositorioVeiculo;
-import br.com.kpc.locbus.core.Linha;
 import br.com.kpc.locbus.core.Veiculo;
 import br.com.kpc.locbus.servico.ContextoInicial;
 import java.util.ArrayList;

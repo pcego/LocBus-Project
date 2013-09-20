@@ -8,6 +8,7 @@ import br.com.kpc.locbus.core.IRepositorioParada;
 import br.com.kpc.locbus.core.Parada;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.naming.NamingException;
 import javax.persistence.Query;
 
 /**
@@ -23,15 +24,29 @@ public class ParadaDao extends DaoGenerico<Parada> implements IRepositorioParada
 
     @Override
     public List<Parada> getAll() {
-        Query consulta = getManager().createQuery("select p from Parada p order by p.id");
+
+        Query consulta = getManager().createQuery("select p from Parada p "
+                + "where p.status = true order by p.id");
         return consulta.getResultList();
     }
 
     @Override
     public List<Parada> buscaPorRua(String rua) {
 
-        Query consulta = getManager().createQuery("select p from Parada p where p.endereco.rua = :rua");
+        Query consulta = getManager().createQuery("select p from Parada p "
+                + "where p.rua = :rua AND "
+                + "p.status = true");
         consulta.setParameter("rua", rua);
+        return consulta.getResultList();
+    }
+
+    @Override
+    public List<Parada> buscaPorBairro(String bairro) throws NamingException {
+
+        Query consulta = getManager().createQuery("select p from Parada p "
+                + "where p.bairro = :bairro AND "
+                + "p.status = true");
+        consulta.setParameter("bairro", bairro);
         return consulta.getResultList();
     }
 }

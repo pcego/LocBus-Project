@@ -14,7 +14,7 @@ public class IniciaThreadSocket {
 
     public static void main(String[] args) {
         try{        
-        Thread th = new Thread(new SocketConexaoGps());
+        Thread th = new Thread(new SocketConexaoGps());        
         th.start();
         }catch(ExceptionInInitializerError exi){
             Log.aviso("Falha ao iniciar Thread Socket " + exi.getCause());

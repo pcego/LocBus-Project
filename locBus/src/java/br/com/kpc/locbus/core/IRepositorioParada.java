@@ -36,4 +36,14 @@ public interface IRepositorioParada extends IRepositorio<Parada> {
     @Path("/getPorRua/{paramEnd}")
     // anotation @PathParam define a variável para receber parametro do método        
     List<Parada> buscaPorRua(@PathParam("paramEnd") String rua) throws NamingException;
+    
+     // anotation @GET define o método HTTP ao qual o recurso responde
+    @GET
+    // anotation @Produces define o tipo de retorno do recurso
+    @Produces(MediaType.APPLICATION_JSON)
+    // anotation @Path define o caminho para o recurso
+    @Path("/getPorBairro/{paramEnd}")
+    // anotation @PathParam define a variável para receber parametro do método        
+    List<Parada> buscaPorBairro(@PathParam("paramEnd") String bairro) throws NamingException;
+    
 }

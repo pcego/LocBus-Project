@@ -53,15 +53,14 @@ public class Posicao implements Serializable {
     public Posicao(){
         
     }
-
+    
+    // construtor sobrecarregado
     public Posicao(double latitude, double longitude, Veiculo veiculo) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.veiculo = veiculo;
     }
-    
-    
-    
+        
     public double getLatitude() {
         return latitude;
     }

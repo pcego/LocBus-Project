@@ -4,7 +4,6 @@
  */
 package br.com.kpc.locbus.resource;
 
-import br.com.kpc.locbus.core.Endereco;
 import br.com.kpc.locbus.core.Parada;
 import java.util.List;
 import javax.naming.NamingException;
@@ -26,6 +25,11 @@ public class ParadaResource extends ParadaFacade {
     @Override
     public List<Parada> buscaPorRua(String rua) throws NamingException {
         return super.buscaPorRua(rua);
+    }
+
+    @Override
+    public List<Parada> buscaPorBairro(String bairro) throws NamingException {
+        return super.buscaPorBairro(bairro);
     }
     
     

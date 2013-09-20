@@ -33,7 +33,7 @@ public class Empresa implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo_empresa", nullable = false)
+    @Column(name = "codigo_empresa", nullable = false)    
     private Long id;
     
     @Column(length = 100, nullable = false)
@@ -60,6 +60,7 @@ public class Empresa implements Serializable {
     }
     // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
     // para relações bi-direcionais
+
     @JsonIgnore
     @XmlTransient
     public List<Veiculo> getVeiculo() {

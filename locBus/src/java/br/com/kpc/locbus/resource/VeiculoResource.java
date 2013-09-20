@@ -4,8 +4,6 @@
  */
 package br.com.kpc.locbus.resource;
 
-import br.com.kpc.locbus.core.Empresa;
-import br.com.kpc.locbus.core.Linha;
 import br.com.kpc.locbus.core.Veiculo;
 import java.util.List;
 import javax.naming.NamingException;

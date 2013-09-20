@@ -7,7 +7,6 @@ package br.com.kpc.locbus.resource;
 import br.com.kpc.locbus.Dao.DaoGenerico;
 import br.com.kpc.locbus.core.IRepositorioPosicao;
 import br.com.kpc.locbus.core.Posicao;
-import br.com.kpc.locbus.core.Veiculo;
 import br.com.kpc.locbus.servico.ContextoInicial;
 import java.util.ArrayList;
 import java.util.List;

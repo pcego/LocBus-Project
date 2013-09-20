@@ -5,7 +5,6 @@
 package br.com.kpc.locbus.resource;
 
 import br.com.kpc.locbus.core.Posicao;
-import br.com.kpc.locbus.core.Veiculo;
 import java.util.List;
 import javax.ws.rs.Path;
 
