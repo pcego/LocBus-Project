@@ -32,40 +32,36 @@ public class SocketConexaoGps implements Runnable {
 
             socket = new ServerSocket(PORTA);
 
-            // loop infinito para ouvir porta 
-            Log.info("SocketConexaoGps.class - Ouvindo Porta: " + PORTA);
-
+            // loop infinito para ouvir porta
+            Log.debug(SocketConexaoGps.class.getName() + "Ouvindo Porta " + PORTA);
             while (true) {
 
                 connectionSocket = socket.accept();
                 msgRastreador = null;
 
-                Log.info("IP CLIENTE: " + connectionSocket.getInetAddress().getHostAddress());
-                System.out.println("ip " + connectionSocket.getInetAddress().getHostAddress());
-                
+                Log.debug(IniciaThreadSocket.class.getName() + "IP Cliente: "
+                        + connectionSocket.getInetAddress().getHostAddress());
+
                 rastreador = null;
                 rastreador = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
                 msgRastreador = rastreador.readLine();
-                                
-                System.out.println("mensagem " + msgRastreador);
 
                 decoder = new DecProtocoloTk102b();
-
                 decoder.decodificadorTk102(msgRastreador);
 
             }
 
         } catch (IOException ex) {
-            Log.erro("Falha ao ouvir porta!!" + ex.getCause());
+
+            Log.debug(SocketConexaoGps.class.getName() + "Falha no Socket: " + ex.getCause());
         } finally {
             try {
                 rastreador.close();
                 connectionSocket.close();
             } catch (IOException ex) {
-                System.out.println("conexão fechada");
+                Log.debug(SocketConexaoGps.class.getName() + "Erro ao Fechar Conexão..!");
             }
 
         }
     }
 }
-    

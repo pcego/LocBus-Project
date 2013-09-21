@@ -8,10 +8,9 @@ import br.com.kpc.locbus.Dao.DaoGenerico;
 import br.com.kpc.locbus.core.IRepositorioPosicao;
 import br.com.kpc.locbus.core.Posicao;
 import br.com.kpc.locbus.servico.ContextoInicial;
+import br.com.kpc.locbus.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 /**
@@ -37,7 +36,7 @@ public abstract class PosicaoFacade extends DaoGenerico<Posicao> implements IRep
             pos = rp.getUltimaPosicao(imei);
 
         } catch (NamingException ex) {
-            Logger.getLogger(PosicaoResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(PosicaoFacade.class.getName() + " Falha método getUltimaPosicao() " + ex.getCause());
             return null;
         }
 
@@ -54,7 +53,7 @@ public abstract class PosicaoFacade extends DaoGenerico<Posicao> implements IRep
             lst = rp.getPosicoesPorVeiculo(id);
 
         } catch (NamingException ex) {
-            Logger.getLogger(PosicaoResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(PosicaoFacade.class.getName() + " Falha método getPosicoesPorVeiculo() " + ex.getCause());
             return null;
         }
 

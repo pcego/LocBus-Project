@@ -4,8 +4,7 @@
  */
 package br.com.kpc.locbus.servico;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import br.com.kpc.locbus.util.Log;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -22,7 +21,7 @@ public class ContextoInicial {
         try {
             ctx = (Context) new InitialContext();
         } catch (NamingException ex) {
-            Logger.getLogger(ContextoInicial.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(ContextoInicial.class.getName() + "Falha ao Instanciar Contexto " + ex.getCause());
         }
     }
 

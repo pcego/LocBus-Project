@@ -8,10 +8,9 @@ import br.com.kpc.locbus.Dao.DaoGenerico;
 import br.com.kpc.locbus.core.IRepositorioLinha;
 import br.com.kpc.locbus.core.Linha;
 import br.com.kpc.locbus.servico.ContextoInicial;
+import br.com.kpc.locbus.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 /**
@@ -37,7 +36,7 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
             lst = rp.findAll();
 
         } catch (NamingException ex) {
-            Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(LinhaFacade.class.getName() + " Falha método listaTodos() " + ex.getCause());
             return null;
         }
 
@@ -54,7 +53,7 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
             lst = rp.getByParada(parada_id);
 
         } catch (NamingException ex) {
-            Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(LinhaFacade.class.getName() + " Falha método getByParada() " + ex.getCause());
             return null;
         }
 
@@ -72,7 +71,7 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
             lst = rp.listaLinhasPorEmpresa(nome);
 
         } catch (NamingException ex) {
-            Logger.getLogger(LinhaResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(LinhaFacade.class.getName() + " Falha método listaLinhasPorEmpresa() " + ex.getCause());
             return null;
         }
 

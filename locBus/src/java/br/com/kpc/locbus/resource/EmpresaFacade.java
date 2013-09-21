@@ -8,10 +8,9 @@ import br.com.kpc.locbus.Dao.DaoGenerico;
 import br.com.kpc.locbus.core.Empresa;
 import br.com.kpc.locbus.core.IRepositorioEmpresa;
 import br.com.kpc.locbus.servico.ContextoInicial;
+import br.com.kpc.locbus.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 /**
@@ -30,13 +29,13 @@ public abstract class EmpresaFacade extends DaoGenerico<Empresa> implements IRep
     public List<Empresa> listaTodos() throws NamingException {
 
         try {
-            
+
             lst.clear();
             rp = (IRepositorioEmpresa) ContextoInicial.getContext().lookup("java:global/locBus/EmpresaDao");
             lst = rp.listaTodas();
 
         } catch (NamingException ex) {
-            Logger.getLogger(EmpresaResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(EmpresaFacade.class.getName() + " Falha método listaTodos()");
             return null;
         }
 

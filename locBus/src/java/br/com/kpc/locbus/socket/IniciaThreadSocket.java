@@ -13,11 +13,14 @@ import br.com.kpc.locbus.util.Log;
 public class IniciaThreadSocket {
 
     public static void main(String[] args) {
+         
+        Log.debug(IniciaThreadSocket.class.getName() + "SocketConexaoGps... OK");
+        
         try{        
         Thread th = new Thread(new SocketConexaoGps());        
         th.start();
         }catch(ExceptionInInitializerError exi){
-            Log.aviso("Falha ao iniciar Thread Socket " + exi.getCause());
+            Log.error(IniciaThreadSocket.class.getName() + "Falha ao Iniciar SocketConexaoGps...");
         }
     }
 }

@@ -31,10 +31,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 //XML/JSON do objeto
 @XmlRootElement
 public class Veiculo implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
-    @Id    
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_veiculo", nullable = false)
     private Long id;
@@ -62,10 +61,9 @@ public class Veiculo implements Serializable {
     
     @Column(nullable = false)
     private boolean status;
-    
+
     // construtor padrão
-    public Veiculo(){
-        
+    public Veiculo() {
     }
 
     public String getImei() {
@@ -75,7 +73,7 @@ public class Veiculo implements Serializable {
     public void setImei(String imei) {
         this.imei = imei;
     }
-    
+
     // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
     // para relações bi-direcionais
     @JsonIgnore
@@ -87,7 +85,7 @@ public class Veiculo implements Serializable {
     public void setLinha(Linha linha) {
         this.linha = linha;
     }
-    
+
     // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
     // para relações bi-direcionais
     @JsonIgnore
@@ -99,7 +97,7 @@ public class Veiculo implements Serializable {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-    
+
     // anotations utilizadas para evitar o erro "ciclo no gráfico do objeto"
     // para relações bi-direcionais
     @JsonIgnore
@@ -127,8 +125,7 @@ public class Veiculo implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
-        
+
     public Long getId() {
         return id;
     }
@@ -161,5 +158,4 @@ public class Veiculo implements Serializable {
     public String toString() {
         return "br.com.kpc.locbus.core.Veiculo[ id=" + id + " ]";
     }
-    
 }

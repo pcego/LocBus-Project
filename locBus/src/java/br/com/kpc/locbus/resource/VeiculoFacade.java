@@ -8,10 +8,9 @@ import br.com.kpc.locbus.Dao.DaoGenerico;
 import br.com.kpc.locbus.core.IRepositorioVeiculo;
 import br.com.kpc.locbus.core.Veiculo;
 import br.com.kpc.locbus.servico.ContextoInicial;
+import br.com.kpc.locbus.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 /**
@@ -38,7 +37,7 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
             lst = rp.listaTodos();
 
         } catch (NamingException ex) {
-            Logger.getLogger(VeiculoResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(VeiculoFacade.class.getName() + " Falha método listaTodos() " + ex.getCause());
             return null;
         }
 
@@ -56,7 +55,7 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
             lst = rp.listaPorEmpresa(empresa);
 
         } catch (NamingException ex) {
-            Logger.getLogger(VeiculoResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(VeiculoFacade.class.getName() + " Falha método listaPorEmpresa() " + ex.getCause());
             return null;
         }
 
@@ -71,7 +70,7 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
             v = rp.listaVeiculoPorImei(imei);
 
         } catch (NamingException ex) {
-            Logger.getLogger(VeiculoResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(VeiculoFacade.class.getName() + " Falha método listaVeiculoPorImei() " + ex.getCause());
             return null;
         }
         return v;
@@ -87,7 +86,7 @@ public abstract class VeiculoFacade extends DaoGenerico<Veiculo> implements IRep
             lst = rp.listaVeiculosPorLinha(linha);
 
         } catch (NamingException ex) {
-            Logger.getLogger(VeiculoResource.class.getName()).log(Level.SEVERE, null, ex);
+            Log.debug(VeiculoFacade.class.getName() + " Falha método listaVeiculosPorLinha() " + ex.getCause());
             return null;
         }
 
