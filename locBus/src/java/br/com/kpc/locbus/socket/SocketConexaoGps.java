@@ -39,7 +39,7 @@ public class SocketConexaoGps implements Runnable {
                 connectionSocket = socket.accept();
                 msgRastreador = null;
 
-                Log.debug(IniciaThreadSocket.class.getName() + "IP Cliente: "
+                Log.debug(IniciaThreadSocket.class.getName() + " IP Cliente: "
                         + connectionSocket.getInetAddress().getHostAddress());
 
                 rastreador = null;
@@ -49,19 +49,14 @@ public class SocketConexaoGps implements Runnable {
                 decoder = new DecProtocoloTk102b();
                 decoder.decodificadorTk102(msgRastreador);
 
+                rastreador.close();
+                connectionSocket.close();
+
             }
 
         } catch (IOException ex) {
 
-            Log.debug(SocketConexaoGps.class.getName() + "Falha no Socket: " + ex.getCause());
-        } finally {
-            try {
-                rastreador.close();
-                connectionSocket.close();
-            } catch (IOException ex) {
-                Log.debug(SocketConexaoGps.class.getName() + "Erro ao Fechar Conexão..!");
-            }
-
+            Log.debug(SocketConexaoGps.class.getName() + " Falha no Socket: " + ex.getMessage());
         }
     }
 }
