@@ -44,13 +44,13 @@ public abstract class LinhaFacade extends DaoGenerico<Linha> implements IReposit
     }
 
     @Override
-    public List<Linha> getByParada(int parada_id) throws NamingException {
+    public List<Linha> getByParada(String descricao) throws NamingException {
 
         try {
 
             lst.clear();
             rp = (IRepositorioLinha) ContextoInicial.getContext().lookup("java:global/locBus/LinhaDao");
-            lst = rp.getByParada(parada_id);
+            lst = rp.getByParada(descricao);
 
         } catch (NamingException ex) {
             Log.debug(LinhaFacade.class.getName() + " Falha método getByParada() " + ex.getCause());

@@ -30,11 +30,11 @@ public class LinhaDao extends DaoGenerico<Linha> implements IRepositorioLinha {
     }
 
     @Override
-    public List<Linha> getByParada(int parada_id) {
+    public List<Linha> getByParada(String descricao) {
         final String sql;
         sql = "select *from linhas as l join paradas_linhas as pl on "
                 + "l.codigo_linha = pl.linha_id join paradas as p on "
-                + "p.codigo_parada = pl.parada_id where p.codigo_parada = " + parada_id + " AND p.status = true;";
+                + "p.codigo_parada = pl.parada_id where p.descricao = " +"'" + descricao + "'" + " AND p.status = true;";
         Query consulta = getManager().createNativeQuery(sql, Linha.class);
         return consulta.getResultList();
     }

@@ -18,8 +18,8 @@ import javax.ws.rs.Path;
 public class LinhaResource extends LinhaFacade {
 
     @Override
-    public List<Linha> getByParada(int parada_id) throws NamingException {
-        return super.getByParada(parada_id);
+    public List<Linha> getByParada(String descricao) throws NamingException {
+        return super.getByParada(descricao);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class Parada implements Serializable {
     @Column(nullable = false)
     private double longitude;
     
-    @Column(length = 200)
+    @Column(length = 200, unique = true)
     private String descricao;
     
     @Column(nullable = false)

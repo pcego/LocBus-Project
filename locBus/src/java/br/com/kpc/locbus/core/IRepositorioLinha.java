@@ -35,7 +35,7 @@ public interface IRepositorioLinha extends IRepositorio<Linha> {
     // anotation @Path define o caminho para o recurso
     @Path("/getByParada/{paramParada}")
     // anotation @PathParam define a variável para receber parametro do método        
-    List<Linha> getByParada(@PathParam("paramParada") int parada_id) throws NamingException;
+    List<Linha> getByParada(@PathParam("paramParada") String descricao) throws NamingException;
 
     // anotation @GET define o método HTTP ao qual o recurso responde
     @GET
