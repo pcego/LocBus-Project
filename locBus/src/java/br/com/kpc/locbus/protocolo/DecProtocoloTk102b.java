@@ -46,7 +46,7 @@ public class DecProtocoloTk102b {
 
                     try {
                         imei = msgTratada[0].substring(5);
-
+                        // Regex para validar IMEI
                         if (imei.matches("\\d{15}")) {
 
                             try {
@@ -60,13 +60,15 @@ public class DecProtocoloTk102b {
                         } else {
                             Log.error(DecProtocoloTk102b.class.getName() + " Falha GPS, Mensagem Incompleta ");
                         }
-
+                         // Regex para validar Latitude e Longitude
                         if (msgTratada[7].matches("(\\d{2})(\\d{2}\\.\\d{4})") && msgTratada[9].matches("(\\d{3})(\\d{2}\\.\\d{4})")) {
-
+                            
+                            //Recebendo a Latitude em GRAUS
                             int grau = Integer.valueOf(msgTratada[7].substring(0, 2));
+                            // Conversão de GRAUS Para MINUTOS
                             Double min = Double.valueOf(msgTratada[7].substring(2)) / 60;
                             latitude = grau + min;
-
+                            // se for S hemisfério Sul, se for N hemisfério Norte 
                             if (msgTratada[8].contentEquals("S")) {
                                 latitude *= (-1);
                             }
